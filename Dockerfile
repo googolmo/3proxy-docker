@@ -1,8 +1,6 @@
 FROM alpine:latest
 
 ENV _3PROXY_VERSION 0.8.11
-ENV _3PROXY_DOWNLOAD_URL https://codeload.github.com/z3APA3A/3proxy/tar.gz/3proxy-0.8.7
-ENV _3PROXY_DOWNLOAD_SHA1 d69a371db05f0c8438402192aec6c09c5f69a999
 
 RUN set -ex \
 	\
@@ -14,8 +12,7 @@ RUN set -ex \
 		tar \
 		openssl \
 	\
-	&& wget -O 3proxy.tar.gz "$_3PROXY_DOWNLOAD_URL" \
-	&& echo "$_3PROXY_DOWNLOAD_SHA1 *3proxy.tar.gz" | sha1sum -c - \
+	&& wget -O 3proxy.tar.gz https://github.com/z3APA3A/3proxy/archive/$_3PROXY_VERSION.tar.gz \
 	&& mkdir -p /usr/src/3proxy \
 	&& tar -xzf 3proxy.tar.gz -C /usr/src/3proxy --strip-components=1 \
 	&& rm 3proxy.tar.gz \
